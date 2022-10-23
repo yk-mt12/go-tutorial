@@ -6,6 +6,7 @@ func main() {
 	// varで定義した変数は関数の外でも宣言可能
 	var (
 		i int = 1
+		// デフォルトでは、float64が入る。float32で定義したい場合には、明示的にfloat32型をつけておく
 	 f64 float64 = 1.2
 	 s string = "test"
 	 t, f bool = true, false
