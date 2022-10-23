@@ -2,12 +2,8 @@ package main
 
 import "fmt"
 
-const Pi = 3.14
-
-const (
-	username = "test user"
-	password = "test password"
-)
+// gofmt -w main.goでフォーマットを実行
 func main() {
-	fmt.Println(Pi, username, password)
+	x := 1 + 1
+	fmt.Println(x)
 }
