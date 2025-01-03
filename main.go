@@ -2,10 +2,17 @@ package main
 
 import (
 	"fmt"
-	"time"
-	"github.com/tenntenn/greeting/v2"
+	"flag"
+	"strings"
 )
 
+var msg = flag.String("msg", "hoge", "Flag to print a message")
+var n int
+
+func init() {
+	flag.IntVar(&n, "n", 1, "回数")
+}
 func main() {
-	fmt.Println(greeting.Do(time.Now()))
+	flag.Parse()
+	fmt.Println(strings.Repeat(*msg, n))
 }
