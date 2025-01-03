@@ -2,10 +2,16 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
+func isEven(n int) bool {
+	if n%2 == 0 {
+		return true
+	}
+	return false
+}
+
 func main() {
-	fmt.Fprintln(os.Stderr, "error")
-	os.Exit(1)
+	n := 10
+	fmt.Println(isEven(n))
 }

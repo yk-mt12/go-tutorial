@@ -1,0 +1,5 @@
+mode: set
+example.com/go-tutorial/main.go:7.25,8.14 1 1
+example.com/go-tutorial/main.go:8.14,10.3 1 1
+example.com/go-tutorial/main.go:11.2,11.14 1 1
+example.com/go-tutorial/main.go:14.13,17.2 2 0
