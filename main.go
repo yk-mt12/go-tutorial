@@ -1,19 +1,33 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
-	"net/http"
-	"math/rand"
+	"log"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	omikuji := []string{"大吉", "中吉", "小吉", "吉", "凶"}
-	result := omikuji[rand.Intn(len(omikuji))]
-
-	fmt.Fprintln(w, result)
-}
-
 func main() {
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
+
+	type Person struct {
+		Name string `json:"name"`
+		Age  int    `json:"age"`
+	}
+
+	p := Person{Name: "John", Age: 30}
+
+	var buf bytes.Buffer
+	enc := json.NewEncoder(&buf)
+	if err := enc.Encode(p); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(buf.String())
+
+	var p2 Person
+	dec := json.NewDecoder(&buf)
+	if err := dec.Decode(&p2); err!= nil {
+		log.Fatal(err)
+	}
+	fmt.Println(p2)
 }
