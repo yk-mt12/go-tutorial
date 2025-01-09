@@ -2,21 +2,18 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"net/http"
+	"math/rand"
 )
 
+func handler(w http.ResponseWriter, r *http.Request) {
+	omikuji := []string{"大吉", "中吉", "小吉", "吉", "凶"}
+	result := omikuji[rand.Intn(len(omikuji))]
+
+	fmt.Fprintln(w, result)
+}
+
 func main() {
-	defer fmt.Println("main done")
-
-	go func() {
-		defer fmt.Println("goroutine1 done")
-		time.Sleep(3 * time.Second)
-	}()
-
-	go func() {
-		defer fmt.Println("goroutine2 done")
-		time.Sleep(5 * time.Second)
-	}()
-
-	time.Sleep(6 * time.Second)
+	http.HandleFunc("/", handler)
+	http.ListenAndServe(":8080", nil)
 }
